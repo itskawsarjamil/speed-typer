@@ -23,6 +23,11 @@ fetch("./texts.json")
 const typeController = (e) => {
   const newLetter = e.key;
 
+  //Handle page scrolling
+  if (e.keyCode == 32 && e.target == document.body) {
+    e.preventDefault();
+  }
+
   // Handle backspace press
   if (newLetter == "Backspace") {
     userText = userText.slice(0, userText.length - 1);
@@ -116,7 +121,7 @@ const start = () => {
       document.addEventListener("keydown", typeController);
       countdownOverlay.style.display = "none";
       display.classList.remove("inactive");
-      
+
       clearInterval(startCountdown);
       startTime = new Date().getTime();
     }
